@@ -1,4 +1,6 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.cucumber</groupId>
     <artifactId>cucumber-jvm</artifactId>
@@ -579,9 +581,25 @@
             <activation>
                 <jdk>1.8</jdk>
             </activation>
+
             <modules>
                 <module>java8</module>
+                <module>kotlin-java8</module>
             </modules>
+            <dependencyManagement>
+                <dependencies>
+                    <dependency>
+                        <groupId>io.cucumber</groupId>
+                        <artifactId>cucumber-java8</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>io.cucumber</groupId>
+                        <artifactId>cucumber-kotlin-java8</artifactId>
+                        <version>${project.version}</version>
+                    </dependency>
+                </dependencies>
+            </dependencyManagement>
         </profile>
 
         <profile>
@@ -754,7 +772,8 @@
                     <configuration>
                         <aggregate>true</aggregate>
                         <use>false</use>
-                        <excludePackageNames>cucumber.runtime,cucumber.runtime.*</excludePackageNames>
+                        <excludePackageNames>cucumber.runtime,cucumber.runtime.*
+                        </excludePackageNames>
                         <links>
                             <link>http://docs.oracle.com/javase/7/docs/api/</link>
                             <link>http://junit.sourceforge.net/javadoc/</link>
@@ -922,12 +941,14 @@
                                     <version>[${minimum.maven.version},)</version>
                                 </requireMavenVersion>
                                 <requirePluginVersions>
-                                    <message>Best Practice is to always define plugin versions!</message>
+                                    <message>Best Practice is to always define plugin versions!
+                                    </message>
                                     <banLatest>true</banLatest>
                                     <banRelease>true</banRelease>
                                     <banSnapshots>true</banSnapshots>
                                     <phases>clean,deploy,site</phases>
-                                    <unCheckedPluginList>org.codehaus.mojo:cobertura-maven-plugin</unCheckedPluginList>
+                                    <unCheckedPluginList>org.codehaus.mojo:cobertura-maven-plugin
+                                    </unCheckedPluginList>
                                 </requirePluginVersions>
                                 <bannedDependencies>
                                     <excludes>
